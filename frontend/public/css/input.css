@@ -15,7 +15,7 @@
 }
 
 h1 {
-  @apply text-4xl font-semibold;
+  @apply text-4xl font-bold;
 }
 h2 {
   @apply text-3xl font-semibold;
@@ -45,4 +45,11 @@ p {
 
 .list-item-card {
   @apply bg-white rounded-md shadow border-1 border-gray-200 p-8;
+}
+
+label {
+  @apply text-sm text-black/90 font-semibold;
+}
+input, select, textarea{
+  @apply border-1 rounded-md px-2 py-1 border-gray-200;
 }
