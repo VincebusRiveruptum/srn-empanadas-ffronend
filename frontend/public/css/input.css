@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+* {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+@theme {
+  --color-primary: rgb(240, 180, 10);
+  --color-background: rgb(250, 250, 250);
+  --color-footer: rgb(240, 210, 160);
+}
+
+h1 {
+  @apply text-4xl font-semibold;
+}
+h2 {
+  @apply text-3xl font-semibold;
+}
+h3 {
+  @apply text-2xl font-semibold;
+}
+h4 {
+  @apply text-xl font-semibold;
+}
+
+nav a {
+  @apply font-semibold hover:scale-105 transition-all;
+}
