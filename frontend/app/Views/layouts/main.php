@@ -24,19 +24,21 @@
         </div>
     </header>
 
-    <div class="grow overflow-auto bg-background">
+    <div class="grow overflow-auto bg-gradient-to-b from-background to-primary/10 ">
         <main class="flex flex-col h-full p-8 mx-auto sm:w-[90%]">
             <!-- This is where each view will be injected -->
             <?= $this->renderSection('content') ?>
         </main>
     </div>
 
+    <!---
     <footer class="bg-footer flex flex-col gap-8 p-4 ">
         <div class="sm:w-[90%] mx-auto">
 
             <p>&copy; <?= date('Y') ?> Vicente Riveros Garay</p>
         </div>
     </footer>
+    -->
     <script>
         lucide.createIcons();
     </script>

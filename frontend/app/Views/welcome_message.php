@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/main') ?>
 
 <?= $this->section('content')?>
-<div class="p-4 flex flex-col gap-4">
+<div class="flex flex-col gap-4">
     <h1>This is the home view!</h1>
     <p>This is the home view of the empanadas manager, hope you like it! :)</p>
 
