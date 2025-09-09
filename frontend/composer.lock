@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9462cf694e12dca11d6e30cffb368e35",
+    "content-hash": "b40c8a5faaf5202ede7a34a6b9f60528",
     "packages": [
         {
             "name": "codeigniter4/framework",
@@ -190,64 +190,6 @@
                 "source": "https://github.com/php-fig/log/tree/3.0.2"
             },
             "time": "2024-09-11T13:17:53+00:00"
-        },
-        {
-            "name": "yassinedoghri/codeigniter-vite",
-            "version": "v2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yassinedoghri/codeigniter-vite.git",
-                "reference": "aa0cfe8142db38b50181aae4a39fcfec12e2e346"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yassinedoghri/codeigniter-vite/zipball/aa0cfe8142db38b50181aae4a39fcfec12e2e346",
-                "reference": "aa0cfe8142db38b50181aae4a39fcfec12e2e346",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.1"
-            },
-            "require-dev": {
-                "codeigniter/phpstan-codeigniter": "^1.5.4",
-                "codeigniter4/framework": "^v4.6.0",
-                "pestphp/pest": "^3.8.4",
-                "pestphp/pest-plugin-type-coverage": "^3.6.1",
-                "phpstan/extension-installer": "^1.4.3",
-                "phpstan/phpstan": "^2.1.22",
-                "rector/rector": "^2.1.4",
-                "symplify/coding-standard": "^12.4.3",
-                "symplify/easy-coding-standard": "^12.5.24"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "CodeIgniterVite\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Yassine Doghri",
-                    "homepage": "https://yassinedoghri.com/"
-                }
-            ],
-            "description": "An opinionated Vite integration for CodeIgniter4 projects.",
-            "keywords": [
-                "codeigniter",
-                "codeigniter4",
-                "iconify",
-                "icons",
-                "php-icons"
-            ],
-            "support": {
-                "issues": "https://github.com/yassinedoghri/codeigniter-vite/issues",
-                "source": "https://github.com/yassinedoghri/codeigniter-vite/tree/v2.0.0"
-            },
-            "time": "2025-08-31T15:52:41+00:00"
         }
     ],
     "packages-dev": [
