@@ -1,10 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
-import { notFound } from "./src/middlewares/notFound.js";
-import { handleError } from "./src/middlewares/handleError.js";
-import empanadasRoute from "./src/resources/empanadas/empanaas.routes.js";
+//import { notFound } from "./src/middlewares/notFound.js";
+//import { handleError } from "./src/middlewares/handleError.js";
+import empanadasRoute from "./src/routes/empanadaRoutes.js";
 import cors from "cors";
-dotenv.config({ path: "../.env" });
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -21,8 +21,11 @@ app.use(express.json());
 // api routes
 app.use("/empanadas", empanadasRoute);
 
-app.use(notFound);
-app.use(handleError);
+// temp
+//app.use(notFound);
+
+// temp
+//app.use(handleError);
 
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
