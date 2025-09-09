@@ -8,9 +8,9 @@
             <button class="btn-primary" type="button" onclick="triggerSwal()">
                 <i data-lucide="trash"></i>
             </button>
-            <button class="btn-primary">
+            <a class="btn-primary" href="/empanadas/1/edit">
                 <i data-lucide="pencil"></i>
-            </button>
+            </a>
         </div>
     </div>
 

@@ -3,11 +3,11 @@
 <?= $this->section('content') ?>
 <div class="flex flex-col gap-8">
     <div class="flex justify-between">
-            <h1 class="">Empanadas</h1>
-            <button class="btn-primary">
-                <i data-lucide="plus"></i>
+        <h1 class="">Empanadas</h1>
+        <a href="empanadas/create" class="btn-primary">
+            <i data-lucide="plus"></i>
             Add New Empanada
-        </button>
+        </a>
     </div>
 
     <!-- listado -->
