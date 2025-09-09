@@ -5,7 +5,7 @@
     <title><?= isset($title) ? $title : 'My App' ?></title>
     <link rel="stylesheet" href="/css/main.css?v=<?= time() ?>">
     <script src="https://unpkg.com/lucide@latest"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="flex flex-col h-screen ">
 
@@ -42,5 +42,6 @@
     <script>
         lucide.createIcons();
     </script>
+    <?= $this->renderSection('scripts') ?>
 </body>
 </html>

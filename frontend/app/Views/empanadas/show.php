@@ -5,7 +5,7 @@
     <div class="flex justify-between">
         <h1 class="">Empanada</h1>
         <div class="flex gap-4">
-            <button class="btn-primary">
+            <button class="btn-primary" type="button" onclick="triggerSwal()">
                 <i data-lucide="trash"></i>
             </button>
             <button class="btn-primary">
@@ -24,4 +24,29 @@
         </div>
     </ul>
 </div>
+<?= $this->endSection() ?>
+
+<?= $this->section('scripts') ?>
+<script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('Sup');
+    })
+
+    const triggerSwal = async () => {
+        const result = await Swal.fire({
+            icon: "warning",
+            title: "Delete empanada",
+            text: "Are you sure to remove this empanada?",
+            showCancelButton: true,
+            confirmButtonText: 'Delete',
+        });
+
+        if(result.isConfirmed){
+            console.log('Yep')
+        }
+    }
+
+
+</script>
 <?= $this->endSection() ?>
