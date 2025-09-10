@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 //import { notFound } from "./src/middlewares/notFound.js";
 //import { handleError } from "./src/middlewares/handleError.js";
-import empanadasRoute from "./src/routes/empanadaRoutes.js";
+import empanadasRoute from "./src/routes/empanadas.js";
 import cors from "cors";
 dotenv.config();
 
@@ -14,7 +14,6 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-//middleware
 app.use(cors(corsOptions));
 app.use(express.json());
 

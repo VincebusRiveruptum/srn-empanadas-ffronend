@@ -1,0 +1,26 @@
+meta {
+  name: Create Empanadas
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:3000/empanadas
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name":"Chicken Empanada",
+    "type":"Baked",
+    "filling":"Chicken",
+    "description":"Empanada filled with tasty pieces of chicken",
+    "price":1800,
+    "is_sold_out":0
+  }
+}
+
+settings {
+  encodeUrl: true
+}
