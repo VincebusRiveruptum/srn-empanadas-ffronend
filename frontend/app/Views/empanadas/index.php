@@ -31,3 +31,27 @@
     </ul>
 </div>
 <?= $this->endSection() ?>
+
+<?= $this->section('scripts') ?>
+
+<script>
+    const fetchEmpanadas = async () => {
+        let response = await fetch('http://localhost:3000/empanadas', { 
+            method: 'GET',
+            headers: {
+                'Content-Type' : 'application/json'
+            }
+        })
+
+        let data = response.json();
+
+        console.log(data)
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        await fetchEmpanadas();
+    })
+
+</script>
+
+<?= $this->endSection() ?>
