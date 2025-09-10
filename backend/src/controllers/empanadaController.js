@@ -1,15 +1,25 @@
+import { pool } from "../db/connect.js";
+
 export const empanadaController = {
-  indexEmpanadas: (req, res) => {
+  indexEmpanadas: async (req, res) => {
     // Pagination
-    res.send("Hello World!");
+    let [empanadas] = await pool.query(
+      "SELECT * FROM empanadas ORDER BY created_at DESC"
+    );
+    res.json(empanadas);
   },
 
+  showEmpanada: async (req, res) => {
+    let empanadaId = req.params.id;
+    let [empanadas] = await pool.query(
+      "SELECT * FROM empanadas WHERE id = ?",
+      empanadaId
+    );
+    res.json(empanadas);
+  },
+  
   storeEmpanada: (req, res) => {
     // Store here
-    res.send("Hello World!");
-  },
-
-  showEmpanada: (req, res) => {
     res.send("Hello World!");
   },
 

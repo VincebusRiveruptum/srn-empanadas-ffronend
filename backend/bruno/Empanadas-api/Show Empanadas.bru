@@ -1,0 +1,19 @@
+meta {
+  name: Show Empanadas
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:3000/empanadas/2?test-query=hold-on
+  body: none
+  auth: inherit
+}
+
+params:query {
+  test-query: hold-on
+}
+
+settings {
+  encodeUrl: true
+}

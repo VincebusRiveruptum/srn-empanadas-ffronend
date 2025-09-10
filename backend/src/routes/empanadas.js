@@ -5,6 +5,7 @@ const router = express.Router();
 
 // Add prefix pending
 router.get("/", empanadaController.indexEmpanadas);
+router.get("/:id", empanadaController.showEmpanada);
 router.post("/", empanadaController.storeEmpanada);
 router.put("/:id", empanadaController.updateEmpanada);
 router.delete(":id", empanadaController.deleteEmpanada);
