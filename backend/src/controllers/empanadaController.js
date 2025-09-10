@@ -6,28 +6,55 @@ export const empanadaController = {
     let [empanadas] = await pool.query(
       "SELECT * FROM empanadas ORDER BY created_at DESC"
     );
-    res.json(empanadas);
+    res.json({ success: true, data: empanadas });
   },
 
   showEmpanada: async (req, res) => {
-    let empanadaId = req.params.id;
-    let [empanadas] = await pool.query(
+    const empanadaId = req.params.id;
+    const [empanadas] = await pool.query(
       "SELECT * FROM empanadas WHERE id = ?",
       empanadaId
     );
-    res.json(empanadas);
-  },
-  
-  storeEmpanada: (req, res) => {
-    // Store here
-    res.send("Hello World!");
+    res.json({ success: true, data: empanadas });
   },
 
-  updateEmpanada: (req, res) => {
-    res.send("Hello World!");
+  storeEmpanada: async (req, res) => {
+    // Validation ???
+
+    // Store
+    const result = await pool.query(
+      "INSERT INTO empanadas (name, type, filling, description, price, is_sold_out) VALUES (?, ?, ?, ?, ?, ?)",
+      Object.values(req.body)
+    );
+    res.json({ success: true });
   },
 
-  deleteEmpanada: (req, res) => {
-    res.send("Hello World!");
+  updateEmpanada: async (req, res) => {
+    const id = req.params.id;
+
+    // TERRIBLE!
+    const body = {
+      name: req.body.name ?? null,
+      type: req.body.type ?? null,
+      filling: req.body.filling ?? null,
+      description: req.body.description ?? null,
+      price: req.body.price ?? null,
+      is_sold_out: req.body.is_sold_out ?? null,
+    };
+
+    const result = await pool.query(
+      "REPLACE INTO empanadas (id, name, type, filling, description, price, is_sold_out) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [id, ...Object.values(body)]
+    );
+    res.json({ success: true });
+  },
+
+  deleteEmpanada: async (req, res) => {
+    // Check if exists
+    const id = req.params.id;
+
+    const result = await pool.query("DELETE FROM empanadas WHERE id = ?", [id]);
+
+    res.json({ success: true, id: id });
   },
 };
