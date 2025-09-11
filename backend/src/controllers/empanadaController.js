@@ -16,7 +16,7 @@ export const empanadaController = {
       "SELECT * FROM empanadas WHERE id = ?",
       empanadaId
     );
-    res.json({ success: true, data: empanadas });
+    res.json({ success: true, data: empanadas[0] });
   },
 
   storeEmpanada: async (req, res) => {

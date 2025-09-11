@@ -30,13 +30,16 @@
     const setEmpanadaList = async(container, data) => {
         
         if(!data.data || data?.data.length == 0){
+            console.log('no elements')
             let empanadaItem = document.createElement('li');
             empanadaItem.className = "flex flex-row justify-center p-8 gap-8"
             empanadaItem.innerHTML = `            
-            <div class="text-center w-full">
-                <h3>There are no empandas available!.</h3>
+            <div class="flex flex-col items-center gap-4 text-center w-full text-black/40">
+                <i data-lucide="info"></i>
+                <h5>There are no empandas available!</h5>
             </div>
-             `   
+             `  
+            container.appendChild(empanadaItem);
             return;
         }
 
@@ -56,7 +59,7 @@
                         </p>
                     </div>
                     <div class="h-full flex items-center">
-                        <a href="empanadas/1" class="btn-chevron-right">
+                        <a href="empanadas/${empanada.id}" class="btn-chevron-right">
                         <i data-lucide="chevron-right" class=""></i>
                     </a>
                 </div>
