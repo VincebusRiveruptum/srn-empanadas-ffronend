@@ -46,6 +46,9 @@
     let fillingEl;
     let priceEl;
     let stockEl;
+
+    let empanadaId;
+
     // Fetching the empanada
     const fetchEmpanada = async (empanadaId) => {
         try{
@@ -78,7 +81,35 @@
         }
     }
 
-    // Deletig empanda
+    // Deleting empanada request
+
+    const deleteEmpanda = async (empanadaId) => {
+        if(!empanadaId) {
+            throw Error('Invalid empanada Id');
+            return;
+        }
+
+        const response = await fetch(`http://localhost:3000/empanadas/${empanadaId}`, {
+            method: 'DELETE'
+        })
+
+        if(!response) {
+            throw Error('No response from server');
+            return;
+        }
+
+        const { success } = await response.json();
+
+        if(!success){
+            throw Error('Could not be removed, 500 error from server');
+            return;
+        }
+        
+        window.location.href = "<?= site_url('empanadas') ?>";
+        
+    }
+
+    // Deletig empanda modal
     const triggerSwal = async () => {
         const result = await Swal.fire({
             icon: "warning",
@@ -90,6 +121,9 @@
 
         if(result.isConfirmed){
             console.log('Yep')
+            
+            
+            deleteEmpanda(empanadaId)
         }
     }
 
@@ -104,7 +138,7 @@
             priceEl = document.getElementById('price');
             stockEl = document.getElementById('stock');
             
-            const empanadaId = +<?= json_encode($empanadaId) ?>;
+            empanadaId = +<?= json_encode($empanadaId) ?>;
             
             if(nameEl && descriptionEl && typeEl && fillingEl && priceEl && stockEl){
                 await fetchEmpanada(empanadaId);
