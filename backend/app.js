@@ -7,9 +7,6 @@ import cors from "cors";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
-
-console.log(process.env.FRONTEND_URL);
 const corsOptions = {
   origin: process.env.FRONTEND_URL,
   optionsSuccessStatus: 200,
@@ -27,6 +24,5 @@ app.use("/empanadas", empanadasRoute);
 // temp
 //app.use(handleError);
 
-app.listen(port, () => {
-  console.log(`server running on port ${port}`);
-});
+
+export default app;
