@@ -67,8 +67,8 @@
             priceEl.innerHTML = `$${data.price}`
             typeEl.innerHTML = data.type;
             fillingEl.innerHTML = data.filling;
-            stockEl.innerHTML = !data.is_sold_out ? 'Available' : 'Not Available';
-            stockEl.className = data.is_sold_out ? "not-available" : 'available';
+            stockEl.innerHTML = !!data.is_sold_out ? 'Available' : 'Not Available';
+            stockEl.className = !!data.is_sold_out ? "available" : 'not-available';
             
                  
         }catch(e){
