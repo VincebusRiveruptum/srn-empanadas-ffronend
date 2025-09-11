@@ -56,7 +56,7 @@
                         </p>
                     </div>
                     <div class="h-full flex items-center">
-                        <a href="empanadas/1" class="btn-chevron-right">
+                        <a href="empanadas/${empanada.id}" class="btn-chevron-right">
                         <i data-lucide="chevron-right" class=""></i>
                     </a>
                 </div>

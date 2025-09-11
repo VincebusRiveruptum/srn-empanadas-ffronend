@@ -10,6 +10,7 @@
 
 @theme {
   --color-primary: rgb(250, 140, 10);
+  --color-primary-dark: rgb(125, 70, 5);
   --color-background: rgb(250, 250, 250);
   --color-footer: rgb(210, 210, 210);
 }
@@ -50,6 +51,20 @@ p {
 label {
   @apply text-sm text-black/90 font-semibold;
 }
-input, select, textarea{
+input,
+select,
+textarea {
   @apply border-1 rounded-md px-2 py-1 border-gray-200;
+}
+
+badge {
+  @apply rounded-full bg-primary/40 text-primary-dark px-4 py-1 text-sm font-semibold cursor-default;
+}
+
+.available {
+  @apply bg-green-500/40 text-green-800;
+}
+
+.not-available {
+  @apply bg-red-500/40 text-red-800;
 }

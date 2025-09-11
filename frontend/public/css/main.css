@@ -7,6 +7,10 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-500: oklch(63.7% 0.237 25.331);
+    --color-red-800: oklch(44.4% 0.177 26.899);
+    --color-green-500: oklch(72.3% 0.219 149.579);
+    --color-green-800: oklch(44.8% 0.119 151.328);
     --color-gray-200: oklch(92.8% 0.006 264.531);
     --color-black: #000;
     --color-white: #fff;
@@ -30,6 +34,7 @@
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --color-primary: rgb(250, 140, 10);
+    --color-primary-dark: rgb(125, 70, 5);
     --color-background: rgb(250, 250, 250);
     --color-footer: rgb(210, 210, 210);
   }
@@ -489,6 +494,35 @@ input, select, textarea {
   border-color: var(--color-gray-200);
   padding-inline: calc(var(--spacing) * 2);
   padding-block: calc(var(--spacing) * 1);
+}
+badge {
+  cursor: default;
+  border-radius: calc(infinity * 1px);
+  background-color: color-mix(in srgb, rgb(250, 140, 10) 40%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-primary) 40%, transparent);
+  }
+  padding-inline: calc(var(--spacing) * 4);
+  padding-block: calc(var(--spacing) * 1);
+  font-size: var(--text-sm);
+  line-height: var(--tw-leading, var(--text-sm--line-height));
+  --tw-font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-dark);
+}
+.available {
+  background-color: color-mix(in srgb, oklch(72.3% 0.219 149.579) 40%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-green-500) 40%, transparent);
+  }
+  color: var(--color-green-800);
+}
+.not-available {
+  background-color: color-mix(in srgb, oklch(63.7% 0.237 25.331) 40%, transparent);
+  @supports (color: color-mix(in lab, red, red)) {
+    background-color: color-mix(in oklab, var(--color-red-500) 40%, transparent);
+  }
+  color: var(--color-red-800);
 }
 @property --tw-border-style {
   syntax: "*";
