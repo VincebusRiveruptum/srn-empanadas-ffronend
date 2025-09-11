@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 <div class="flex flex-col gap-8">
-    <div class="flex flex-col items-center gap-2">
+    <div class="flex flex-col items-center gap-2 text-center">
         <h1>Create a New Empanada</h1>  
         <P>Share your delicious empanada with the world</P>
     </div>

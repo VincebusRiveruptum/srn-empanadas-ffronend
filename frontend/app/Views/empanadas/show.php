@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 <div class="flex flex-col gap-8">
-    <div class="flex justify-between">
+    <div class="flex flex-col sm:flex-row justify-between w-full gap-8">
         <div class="flex flex-col gap-4 w-full">
             <h1 id="name" class=""></h1>
             <div class="flex flex-row gap-4">
@@ -12,29 +12,36 @@
             </div>
         </div>
         <div>
-            <div class="flex gap-4">
-                <button class="btn-primary" type="button" onclick="triggerSwal()">
+            <div class="flex justify-between gap-4">
+                <button class="btn-primary w-full sm:w-fit" type="button" onclick="triggerSwal()">
                     <i data-lucide="trash"></i>
+                    <span class="sm:hidden">Remove</span>
                 </button>
-                <a class="btn-primary" href="/empanadas/<?= $empanadaId ?>/edit">
+                <a class="btn-primary  w-full sm:w-fit" href="/empanadas/<?= $empanadaId ?>/edit">
                     <i data-lucide="pencil"></i>
+                    <span class="sm:hidden">Edit</span>
                 </a>
             </div>
         </div>
     </div>
-
+ 
     <!-- listado -->
     <ul class="grid grid-cols-1 gap-8">
         <div class="list-item-card gap-4 flex flex-col">
             <h3>Description</h3>
-            <p id="description">
-            </p>
+            <p id="description" >
+                </p>
+        
         </div>
         <div class="list-item-card gap-4 flex flex-col">
             <h3>Filling</h3>
             <p id="filling"></p>
         </div>
     </ul>
+
+           <div class=" overflow-clip sm:w-1/2 rounded-lg mx-auto mb-12">
+                    <img src="/img/placeholder.jpg" alt="empanada" class="object-cover">
+                </div>
 </div>
 <?= $this->endSection() ?>
 

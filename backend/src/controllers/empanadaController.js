@@ -38,17 +38,22 @@ export const empanadaController = {
   },
 
   updateEmpanada: async (req, res) => {
-    try {
-      const id = req.params.id;
+    //try {
+    const id = req.params.id;
+    const empandadaForm = await empanadaSchema.safeParseAsync(req.body);
 
-      const result = await pool.query(
-        "REPLACE INTO empanadas (id, name, type, filling, description, price, is_sold_out) VALUES (?, ?, ?, ?, ?, ?, ?)",
-        [id, ...Object.values(body)]
-      );
-      res.json({ success: true });
-    } catch (e) {
-      res.json({ success: false, message: err });
+    if (!empandadaForm.success) {
+      res.json({ success: false, errors: empandadaForm.error });
     }
+    
+    const result = await pool.query(
+      "REPLACE INTO empanadas (id, name, type, filling, description, price, is_sold_out) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [id, ...Object.values(req.body)]
+    );
+    res.json({ success: true });
+    //} catch (e) {
+    //  res.json({ success: false, message: e });
+    //}
   },
 
   deleteEmpanada: async (req, res) => {
