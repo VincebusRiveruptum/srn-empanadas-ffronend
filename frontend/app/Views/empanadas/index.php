@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 <div class="flex flex-col gap-8">
-    <div class="flex justify-between">
+    <div class="flex sm:flex-row sm:justify-between flex-col gap-8">
         <h1 class="">Empanadas</h1>
         <a href="empanadas/create" class="btn-primary">
             <i data-lucide="plus"></i>
@@ -11,7 +11,7 @@
     </div>
 
     <!-- listado -->
-    <ul id="empanadas-list" class="grid grid-cols-1 gap-8"></ul>
+    <ul id="empanadas-list" class="grid grid-cols-1 gap-12 sm:gap-8"></ul>
 </div>
 <?= $this->endSection() ?>
 
@@ -46,22 +46,37 @@
         
         for(const empanada of data.data){
             let empanadaItem = document.createElement('li');
-            empanadaItem.className = "list-item-card flex flex-row gap-8"
+            empanadaItem.className = "list-item-card flex flex-col items-center sm:flex-row gap-8"
             empanadaItem.innerHTML = 
             `            
-                <div class="rounded-md overflow-clip w-32 h-32 aspect-square bg-background">
-                    <img alt="empanada-placeholder" class="object-cover w-full h-full" >
+                <div class="rounded-lg overflow-clip w-full h-full sm:w-32 sm:h-32 aspect-square bg-background">
+                    <img src="/img/placeholder.jpg" alt="empanada-placeholder" class="object-cover w-full h-full" >
                     </div>
-                    <div class="flex flex-col justify-center w-full">
+                    <div class="flex flex-col gap-2 justify-center w-full">
                         <h2>${empanada.name ?? '-'}</h2>
-                        <p>
+                        <p class="line-clamp-2">
                             ${empanada.description ?? '-'}
                         </p>
+                        <p class="!font-semibold !text-black">
+                            $${empanada.price ?? '-'}
+                        </p>
+                        <div>
+                            <badge>
+                            ${empanada.type}
+                            </badge>
+                        </div>
                     </div>
-                    <div class="h-full flex items-center">
+                    <div class="h-full hidden sm:flex ml-auto sm:m-auto sm:items-center">
                         <a href="empanadas/${empanada.id}" class="btn-chevron-right">
+                            <i data-lucide="chevron-right" class=""></i>
+                        </a>
+                    </div>
+                    <div class="h-full flex sm:hidden w-full items-center">
+                        <a href="empanadas/${empanada.id}" class="btn-primary !bg-primary/60 w-full">
+                        See details
                         <i data-lucide="chevron-right" class=""></i>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             `       
             container.appendChild(empanadaItem);
