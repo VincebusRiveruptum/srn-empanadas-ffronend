@@ -62,7 +62,7 @@
 
             if(!data) throw Error('Invalid empanada data');
 
-            nameEl.innerHTML = `${data.name} Empanada`;
+            nameEl.innerHTML = `${data.name}`;
             descriptionEl.innerHTML = data.description;
             priceEl.innerHTML = `$${data.price}`
             typeEl.innerHTML = data.type;

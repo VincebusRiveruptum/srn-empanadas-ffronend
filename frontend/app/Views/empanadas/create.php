@@ -63,7 +63,7 @@
             const formData = new FormData(form);
             let body = Object.fromEntries(formData.entries())
 
-            body.is_sold_out = !!body.is_sold_out;
+            body.is_sold_out = body.is_sold_out == 1 ? true : false;
             body.price = +body.price
             
             // Validate body before

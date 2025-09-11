@@ -77,7 +77,7 @@
 
             if(!data) throw Error('Invalid empanada data');
 
-            nameEl.value = `${data.name} Empanada`;
+            nameEl.value = `${data.name}`;
             descrEl.value = data.description;
             priceEl.value = +data.price
             typeEl.value = data.type;
@@ -102,19 +102,18 @@
 
     const submitForm = async (e) => {
         try{
-
             const form = e.target;
             const formData = new FormData(form);
             let body = Object.fromEntries(formData.entries())
 
-            body.is_sold_out = !!body.is_sold_out;
+            body.is_sold_out = body.is_sold_out == 1 ? true : false;
             body.price = +body.price
             
             // Validate body before
 
             // Send post
-            const response = await fetch('http://localhost:3000/empanadas', {
-                method: 'PATH   ',
+            const response = await fetch(`http://localhost:3000/empanadas/${empanadaId}`, {
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -126,8 +125,8 @@
             if(success){
                 await Swal.fire({
                     icon:'success',
-                    title: 'Create empanada',
-                    text: 'Empanada created succesfully!'
+                    title: 'Update empanada',
+                    text: 'Empanada updated succesfully!'
                 })
 
                 window.location.href = "<?= site_url('empanadas') ?>";
@@ -135,6 +134,7 @@
                 throw Error('There was an error while creating the empanada, check all the values first.')
             }
         }catch(e){
+            console.error(e)
             Swal.fire({
                 icon:'error',
                 title:'Error',
@@ -155,9 +155,7 @@
             priceEl = document.getElementById('price');
             stockTrueEl = document.getElementById('is_sold_out-true');
             stockFalseEl = document.getElementById('is_sold_out-false');
-            
-            console.log(nameEl, typeEl, descrEl, fillingEl, priceEl, stockTrueEl, stockFalseEl)
-            
+
             empanadaId = +<?= json_encode($empanadaId) ?>;
 
             if(nameEl && typeEl && descrEl && fillingEl && priceEl && stockTrueEl && stockFalseEl){
