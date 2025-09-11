@@ -16,7 +16,7 @@
                 <button class="btn-primary" type="button" onclick="triggerSwal()">
                     <i data-lucide="trash"></i>
                 </button>
-                <a class="btn-primary" href="/empanadas/<?= json_encode($empanadaId) ?>/edit">
+                <a class="btn-primary" href="/empanadas/<?= $empanadaId ?>/edit">
                     <i data-lucide="pencil"></i>
                 </a>
             </div>
@@ -62,13 +62,13 @@
 
             if(!data) throw Error('Invalid empanada data');
 
-            nameEl.innerHTML = `${data.name} Empanada`;
+            nameEl.innerHTML = `${data.name}`;
             descriptionEl.innerHTML = data.description;
             priceEl.innerHTML = `$${data.price}`
             typeEl.innerHTML = data.type;
             fillingEl.innerHTML = data.filling;
-            stockEl.innerHTML = !data.is_sold_out ? 'Available' : 'Not Available';
-            stockEl.className = data.is_sold_out ? "not-available" : 'available';
+            stockEl.innerHTML = !!data.is_sold_out ? 'Available' : 'Not Available';
+            stockEl.className = !!data.is_sold_out ? "available" : 'not-available';
             
                  
         }catch(e){

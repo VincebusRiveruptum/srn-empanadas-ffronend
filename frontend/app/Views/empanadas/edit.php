@@ -7,7 +7,7 @@
     </div>
 
     <!-- listado -->
-    <form action="submitForm()" class="list-item-card lg:w-[50%] lg:mx-auto flex flex-col gap-8 mb-[5%]">
+    <form onsubmit="event.preventDefault();return submitForm(event)" class="list-item-card lg:w-[50%] lg:mx-auto flex flex-col gap-8 mb-[5%]">
         <div class="flex flex-col">
             <label for="name">Name</label>
             <input id="name" name="name" type="text" required/>
@@ -16,8 +16,8 @@
             <label for="type">Type</label>
             <select id="type" name="type">
                 <option selected disabled value="">-- Select type --</option>
-                <option value="baked">Baked</option>
-                <option value="fried">Fried</option>
+                <option value="Baked">Baked</option>
+                <option value="Fried">Fried</option>
             </select>
         </div>
 
@@ -27,17 +27,22 @@
         </div>
 
         <div class="flex flex-col">
+            <label for="filling">Filling</label>
+            <textarea id="filling" name="filling" required></textarea>
+        </div>
+
+        <div class="flex flex-col">
             <label for="price">Price (CLP)</label>
             <input id="price" name="price" type="number" min=0 max=999999 required/>
         </div>
         <div class="flex flex-col">
             <label for="price">Stock availablity</label>
             <div class="flex gap-2 items-center">
-                <input id="has_stock" id="yes_stock" name="has_stock" type="radio" value="1"/>
+                <input id="is_sold_out-true" id="yes_stock" name="is_sold_out" type="radio" value="1"/>
                 <label class="mt-1" for="yes_stock">Yes</label>
             </div>
             <div class="flex gap-2 items-center">
-                <input id="has_stock" id="no_stock" name="has_stock" type="radio" value="0"/>
+                <input id="is_sold_out-false" id="no_stock" name="is_sold_out" type="radio" value="0"/>
                 <label class="mt-1" for="no_stock">No</label>
             </div>
         </div>
@@ -50,9 +55,123 @@
 <?= $this->section('scripts') ?>
 
 <script>
-    const submitForm = (event) => {
-        console.log(event);
+    let nameEl;
+    let typeEl;
+    let descrEl;
+    let fillingEl;
+    let priceEl;
+    let stockTrueEl;
+    let stockFalseEl;
+
+    let empanadaId;
+        // Fetching the empanada
+    const fetchEmpanada = async (empanadaId) => {
+        try{
+            if(!empanadaId) throw Error('Invalid Empanada ID');
+
+            const response = await fetch(`http://localhost:3000/empanadas/${empanadaId}`, {
+                method: 'GET',
+            })
+
+            const { data } = await response.json()
+
+            if(!data) throw Error('Invalid empanada data');
+
+            nameEl.value = `${data.name}`;
+            descrEl.value = data.description;
+            priceEl.value = +data.price
+            typeEl.value = data.type;
+            fillingEl.value = data.filling;
+
+            if(!!data.is_sold_out){
+                stockTrueEl.checked = true;
+                stockFalseEl.checked = false;
+            }else{
+                stockTrueEl.checked = false;
+                stockFalseEl.checked = true;
+            }                
+        }catch(e){
+            console.error(e);
+            Swal.fire({
+                icon:'error',
+                title:'Error',
+                text:'There was a problem trying to fetch the empanada\'s data.'
+            })
+        }
     }
+
+    const submitForm = async (e) => {
+        try{
+            const form = e.target;
+            const formData = new FormData(form);
+            let body = Object.fromEntries(formData.entries())
+
+            body.is_sold_out = body.is_sold_out == 1 ? true : false;
+            body.price = +body.price
+            
+            // Validate body before
+
+            // Send post
+            const response = await fetch(`http://localhost:3000/empanadas/${empanadaId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body),
+            })
+
+            const { success } = await response.json();
+
+            if(success){
+                await Swal.fire({
+                    icon:'success',
+                    title: 'Update empanada',
+                    text: 'Empanada updated succesfully!'
+                })
+
+                window.location.href = "<?= site_url('empanadas') ?>";
+            }else {
+                throw Error('There was an error while creating the empanada, check all the values first.')
+            }
+        }catch(e){
+            console.error(e)
+            Swal.fire({
+                icon:'error',
+                title:'Error',
+                text: e
+            })
+        }
+    }
+
+    // INIT
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        try{
+
+            nameEl = document.getElementById('name');
+            typeEl = document.getElementById('type');
+            descrEl = document.getElementById('description');
+            fillingEl = document.getElementById('filling');
+            priceEl = document.getElementById('price');
+            stockTrueEl = document.getElementById('is_sold_out-true');
+            stockFalseEl = document.getElementById('is_sold_out-false');
+
+            empanadaId = +<?= json_encode($empanadaId) ?>;
+
+            if(nameEl && typeEl && descrEl && fillingEl && priceEl && stockTrueEl && stockFalseEl){
+                await fetchEmpanada(empanadaId)
+            }else{
+                throw Error('No valid form elements');
+            }
+        }catch(e){
+            console.error(e)
+            Swal.fire({
+                icon:'error',
+                title: 'Error',
+                text:e
+            })
+        }
+    })
 </script>
 
 <?= $this->endSection() ?>

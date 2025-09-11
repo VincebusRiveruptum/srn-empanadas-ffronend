@@ -11,8 +11,8 @@ class Empanadas extends BaseController{
         return view('empanadas/create');
     }
 
-    public function edit(){
-        return view('empanadas/edit');
+    public function edit($id){
+        return view('empanadas/edit', ['empanadaId' => $id]);
     }
 
     public function show($id){
