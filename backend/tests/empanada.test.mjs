@@ -1,22 +1,22 @@
 import { jest } from "@jest/globals";
 import request from "supertest";
 
-const { pool } = await import("../src/db/connect.js");
-const app = (await import("../app.js")).default;
-
 jest.unstable_mockModule("../src/db/connect.js", () => ({
   pool: {
     query: jest.fn(),
   },
 }));
 
-// ==== TESTS
+const { pool } = await import("../src/db/connect.js");
+const app = (await import("../app.js")).default;
+
 describe("Empanada API", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it("Index empanadas", async () => {
+    // Mock DB response
     pool.query.mockResolvedValueOnce([
       [
         { id: 1, name: "Empanada de Pino", price: 2000, is_sold_out: false },
