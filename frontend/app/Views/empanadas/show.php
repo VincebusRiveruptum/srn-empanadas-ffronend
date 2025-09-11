@@ -16,7 +16,7 @@
                 <button class="btn-primary" type="button" onclick="triggerSwal()">
                     <i data-lucide="trash"></i>
                 </button>
-                <a class="btn-primary" href="/empanadas/<?= json_encode($empanadaId) ?>/edit">
+                <a class="btn-primary" href="/empanadas/<?= $empanadaId ?>/edit">
                     <i data-lucide="pencil"></i>
                 </a>
             </div>
