@@ -22,6 +22,7 @@ services:
       - db
     volumes:
       - ./backend:/usr/src/app
+      - backend_node_modules:/usr/src/app/node_modules
   frontend:
     build: ./frontend
     restart: always
@@ -35,3 +36,4 @@ services:
       - ./frontend:/var/www/html
 volumes:
   db_data:
+  backend_node_modules:
