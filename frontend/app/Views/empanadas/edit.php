@@ -63,6 +63,8 @@
     let stockTrueEl;
     let stockFalseEl;
 
+    const apiUrl = <?= json_encode(env('API_URL'))?>;
+
     let empanadaId;
         // Fetching the empanada
     const fetchEmpanada = async (empanadaId) => {
@@ -112,7 +114,7 @@
             // Validate body before
 
             // Send post
-            const response = await fetch(`http://localhost:3000/empanadas/${empanadaId}`, {
+            const response = await fetch(`${apiUrl}/empanadas/${empanadaId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'

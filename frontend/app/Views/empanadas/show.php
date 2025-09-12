@@ -56,12 +56,15 @@
 
     let empanadaId;
 
+    const apiUrl = <?= json_encode(env('API_URL'))?>;
+
+
     // Fetching the empanada
     const fetchEmpanada = async (empanadaId) => {
         try{
             if(!empanadaId) throw Error('Invalid Empanada ID');
 
-            const response = await fetch(`http://localhost:3000/empanadas/${empanadaId}`, {
+            const response = await fetch(`${apiUrl}/empanadas/${empanadaId}`, {
                 method: 'GET',
             })
 
@@ -96,7 +99,7 @@
             return;
         }
 
-        const response = await fetch(`http://localhost:3000/empanadas/${empanadaId}`, {
+        const response = await fetch(`${apiUrl}/empanadas/${empanadaId}`, {
             method: 'DELETE'
         })
 

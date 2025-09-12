@@ -18,8 +18,10 @@
 <?= $this->section('scripts') ?>
 
 <script>
+    const apiUrl = <?= json_encode(env('API_URL'))?>;
+
     const fetchEmpanadas = async () => {
-        const response = await fetch('http://localhost:3000/empanadas', { 
+        const response = await fetch(`${apiUrl}/empanadas`, { 
             method: 'GET',
         })
 
