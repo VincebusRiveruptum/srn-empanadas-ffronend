@@ -56,6 +56,8 @@
 <?= $this->section('scripts') ?>
 
 <script>
+    const apiUrl = <?= json_encode(env('API_URL'))?>;
+
     const submitForm = async (e) => {
         try{
 
@@ -69,7 +71,7 @@
             // Validate body before
 
             // Send post
-            const response = await fetch('http://localhost:3000/empanadas', {
+            const response = await fetch(`${apiUrl}/empanadas`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
